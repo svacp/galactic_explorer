@@ -1,0 +1,78 @@
+{% extends "portal/base.html" %}
+{% load static %}
+
+{% block page_title %}
+Collection detail
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+<div class="container-fluid">
+    <div class="row mb-4 mt-1">
+        <div class="col-sm-12 text-secondary">
+            <a href="{% url 'home' %}">Home</a>
+            &nbsp;&rsaquo;&nbsp;
+            <a href="{% url 'collections' %}">Collections</a>
+            &nbsp;&rsaquo;&nbsp;
+            <a href="{% url 'collection_detail' collection_id=col_id %}">{{ col_name }}</a>
+            &nbsp;&rsaquo;&nbsp;
+            Statistics
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Collection stats <small>{{ col_name }}</small></h2>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <form class="form-inline text-secondary" method="GET">
+            {% for field in form %}
+                <div class="form-group mr-3">
+                    {{ field.label_tag }}&nbsp;{{ field }}
+                </div>
+            {% endfor %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                        <span class="fas fa-magnifying-glass"></span>
+                        Show the value count
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table text-secondary">
+                    <thead>
+                        <tr>
+                        {% for header_caption in col_header %}
+                            <th>{{ header_caption }}</th>
+                        {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in col_data %}
+                        <tr>
+                        {% for record in row %}
+                            <td>
+                                {{ record }}
+                            </td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

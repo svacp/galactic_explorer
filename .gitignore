@@ -1,0 +1,5 @@
+.idea
+.swp
+files/*.csv
+galactic_db
+__pycache__

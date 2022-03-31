@@ -1,0 +1,76 @@
+{% extends "portal/base.html" %}
+{% load static %}
+
+{% block page_title %}
+Collections
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+<div class="container-fluid">
+    <div class="row mb-4 mt-1">
+        <div class="col-sm-12 text-secondary">
+            <a href="{% url 'home' %}">Home</a>
+            &nbsp;&rsaquo;&nbsp;
+            Collections
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Collections</h2>
+        </div>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert
+            {% if message.tags == 'success' %}alert-success
+            {% elif message.tags == 'info' %}alert-info
+            {% elif message.tags == 'warning' %}alert-warning
+            {% elif message.tags == 'error' %}alert-danger
+            {% endif %}">
+                {{ message }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="row mb-3">
+        <div class="col-lg-2 offset-lg-10">
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    <span class="fas fa-plus"></span>
+                    Fetch new collection
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table text-secondary">
+                    <tbody>
+                    {% for col in collections %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'collection_detail' collection_id=col.id %}">
+                                    {{ col.date_created }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "portal/base.html" %}
+{% load static %}
+
+{% block page_title %}
+Collection detail
+{% endblock page_title %}
+
+{% block breadcrumbs %}
+<div class="container-fluid">
+    <div class="row mb-4 mt-1">
+        <div class="col-sm-12 text-secondary">
+            <a href="{% url 'home' %}">Home</a>
+            &nbsp;&rsaquo;&nbsp;
+            <a href="{% url 'collections' %}">Collections</a>
+            &nbsp;&rsaquo;&nbsp;
+            {{ col_name }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Collection detail <small>{{ col_name }}</small></h2>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-lg-2 offset-lg-10">
+            <a class="btn btn-primary btn-lg btn-block" href="{% url 'collection_stats' collection_id=col_id %}">
+                <span class="fas fa-database"></span>
+                Statistics
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table text-secondary">
+                    <thead>
+                        <tr>
+                        {% for header_caption in col_header %}
+                            <th>{{ header_caption }}</th>
+                        {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in col_data %}
+                        <tr>
+                        {% for record in row %}
+                            <td>
+                                {{ record }}
+                            </td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <a class="btn btn-secondary btn-lg btn-block"
+               href="{% url 'collection_detail' collection_id=col_id %}?page={{ next_page }}">
+                <span class="fas fa-angle-right"></span>
+                Load more
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

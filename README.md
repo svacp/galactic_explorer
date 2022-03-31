@@ -1,29 +1,26 @@
 # PREREQUISITES  
   
-### 1 Packages installation  
-  
-* Packages installed into virtualenv  
-  
+### 1 Packages installation (virtualenv)
 
-         virtualenv -p python3 venv
-         source venv/bin/activate
-		 pip install -r requirements.txt 
+	$ virtualenv -p python3 venv
+	$ source venv/bin/activate
+	$ pip install -r requirements.txt 
 
 ### 2  Migrate the DB
 
 
-		 source venv/bin/activate
-         python manage.py migrate
+	$ source venv/bin/activate
+	$ python manage.py migrate
 		 
 # RUNNING   
   
 ### 1 Activate virtual environment
 
-		$ source venv/bin/activate
+	$ source venv/bin/activate
 
 ### 2 Run the test server
 
-		python manage.py runserver
+	$ python manage.py runserver
 
 After server starting, the application is available on http://127.0.0.1:8000
   

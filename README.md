@@ -4,12 +4,12 @@
   
 * Packages installed into virtualenv  
   
-  
+
+         virtualenv -p python3 venv
+         source venv/bin/activate
 		 pip install -r requirements.txt 
 
-### 1 Packages installation  
-
-* Migrate the DB
+### 2  Migrate the DB
 
 
 		 source venv/bin/activate
@@ -17,7 +17,7 @@
 		 
 # RUNNING   
   
-### 1 Activate virtual enviroment
+### 1 Activate virtual environment
 
 		$ source venv/bin/activate
 
@@ -38,6 +38,6 @@ After server starting, the application is available on http://127.0.0.1:8000
 - Type hinting is used just on non-standard-django scripts. E.g. script for communicating with SWAPI.
 - Some tests within test_views are redundant. It would be nice to use a base class with common tests.
 - Loading data from API is nice example for using shared / asynchronous tasks.
-- "Pagination" is really simple. Standard simple pagination should have at leas possibilities to move forward and backward and number of pages.
+- "Pagination" is really simple. Standard pagination should have at least possibilities to move forward and backward and showing a number of pages.
 - Loading next page could be done without reloading of the page using `ajax` and `jQuery`, for example.
 - Planets processing is nice example for using cache.
